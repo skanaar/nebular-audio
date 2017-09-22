@@ -1,0 +1,85 @@
+disabled_rules:
+- colon
+- comma
+- opening_brace
+- trailing_whitespace
+#- trailing_newline
+- variable_name
+- function_parameter_count
+# - force_cast
+# - force_try
+- todo
+- line_length
+- operator_whitespace
+- cyclomatic_complexity
+- function_body_length
+- statement_position
+- large_tuple
+- unused_closure_parameter
+- shorthand_operator
+- redundant_optional_initialization
+- for_where
+- nesting
+
+opt_in_rules:
+# - empty_count
+- vertical_whitespace
+- redundant_nil_coalesing
+# - private_outlet
+- force_unwrapping
+- force_try
+- force_cast
+
+excluded:
+- nebula/SWXMLHash.swift
+
+reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit)
+
+force_cast: error
+
+force_try: error
+
+type_body_length:
+- 300 # warning
+- 400 # error
+
+file_length:
+  warning: 500
+  error: 1200
+
+custom_rules:
+  group_outlets:
+    name: "Group IBOutlet fields"
+    regex: "@IBOutlet[^\n]*\n *\n *@IBOutlet"
+    message: "IBOutlet fields should be grouped"
+    severity: error
+
+  blank_lines_end:
+    name: "Blank lines"
+    regex: "\n *\n *\}"
+    message: "No blank lines at the end of sections"
+    severity: error
+
+  blank_lines_start:
+    name: "Blank lines"
+    regex: "(if |func |init\(|guard |else )[^\n]*\{ *\n *\n"
+    message: "No blank lines at the start of sections"
+    severity: error
+
+  consecutive_spaces:
+    name: "Consecutive spaces"
+    regex: "^ +[^ \n\"][^\n\"]+  "
+    message: "No consecutive spaces within code"
+    severity: error
+
+  double_curly:
+    name: "Double curly bracket"
+    regex: "^ *\}\} *$"
+    message: "Don't know what this is but surely not allowed"
+    severity: error
+
+  indent:
+    name: "Indent_correctly"
+    regex: "^(    )* {1,3}(let|var|if|for|return|func|class|static|override|extension|\})"
+    message: "Indentation must be a multiple of 4 spaces"
+    severity: warning
