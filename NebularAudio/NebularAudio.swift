@@ -12,9 +12,7 @@ private var musicPool: [AVAudioPlayer] = []
 private var effectPool: [AVAudioPlayer] = []
 
 public class NebularAudio {
-    public init () {
-        //should set up some options, like crossFade time.
-    }
+    public init () {}
     
     public func playMusic (file: String) {
         let url = Bundle.main.url(forResource: file, withExtension: "mp3")
@@ -28,15 +26,11 @@ public class NebularAudio {
                 self.crossFade(player: currentPlayer, from: 1.0, to: 0.0)
             }
             
-            let audioPlayer = try? AVAudioPlayer(contentsOf: url!)
+            let audioPlayer = self.requestMusicPlayer(url: url!)
     
-            audioPlayer?.numberOfLoops = -1
-            // audioPlayer?.volume = 0.0
-            
-            audioPlayer?.prepareToPlay()
-            audioPlayer?.play()
-            
-            musicPool.append(audioPlayer!)
+            audioPlayer.numberOfLoops = -1
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
         }
     }
     
@@ -44,15 +38,37 @@ public class NebularAudio {
     
     }
     
-    public func crossFade (player: AVAudioPlayer, from: Float, to: Float) {
-        // player.setValue(true, forKey: "crossFading")
-        
-        let fade: Int = Int(3.0) * 100
+    private func crossFade (player: AVAudioPlayer, from: Float, to: Float) {
+        let fade: Int = Int(2.0) * 100
     
         for step in 0...fade {
             DispatchQueue.main.asyncAfter(deadline: .now() + Double(Float(step) * 0.01)) {
                 player.volume = from + (to - from) * (Float(step) / Float(fade))
+                
+                if (player.volume <= 0.0) {
+                    player.pause()
+                }
             }
         }
+    }
+    
+    private func requestMusicPlayer (url: URL) -> AVAudioPlayer {
+        let inPool = musicPool.filter { (player) -> Bool in
+            return player.isPlaying == false && player.url == url
+        }
+        
+        if let player = inPool.first {
+            return player
+        }
+        
+        let player = try? AVAudioPlayer(contentsOf: url)
+        
+        musicPool.append(player!)
+        
+        return musicPool.last!
+    }
+    
+    private func requestEffectPlayer (url: URL) {
+    
     }
 }
