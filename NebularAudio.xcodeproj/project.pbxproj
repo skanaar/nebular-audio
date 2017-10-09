@@ -11,11 +11,22 @@
 		1588CB001F8A417E00951A18 /* NebularAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588CAFE1F8A417E00951A18 /* NebularAudio.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		398866281F8BC40E00A1B687 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 398866221F8BC40D00A1B687 /* NebularAudioPlayer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 398865F11F8BC40D00A1B687;
+			remoteInfo = NebularAudioPlayer;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		154A290B1F8A414800C288E9 /* NebularAudio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NebularAudio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		154A290E1F8A414800C288E9 /* NebularAudio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NebularAudio.h; sourceTree = "<group>"; };
 		154A290F1F8A414800C288E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1588CAFE1F8A417E00951A18 /* NebularAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NebularAudio.swift; sourceTree = "<group>"; };
+		398866221F8BC40D00A1B687 /* NebularAudioPlayer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NebularAudioPlayer.xcodeproj; path = NebularAudioPlayer/NebularAudioPlayer.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +43,7 @@
 		154A29011F8A414800C288E9 = {
 			isa = PBXGroup;
 			children = (
+				398866221F8BC40D00A1B687 /* NebularAudioPlayer.xcodeproj */,
 				154A290D1F8A414800C288E9 /* NebularAudio */,
 				154A290C1F8A414800C288E9 /* Products */,
 			);
@@ -53,6 +65,14 @@
 				154A290F1F8A414800C288E9 /* Info.plist */,
 			);
 			path = NebularAudio;
+			sourceTree = "<group>";
+		};
+		398866231F8BC40D00A1B687 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				398866291F8BC40E00A1B687 /* NebularAudioPlayer.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -113,12 +133,28 @@
 			mainGroup = 154A29011F8A414800C288E9;
 			productRefGroup = 154A290C1F8A414800C288E9 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 398866231F8BC40D00A1B687 /* Products */;
+					ProjectRef = 398866221F8BC40D00A1B687 /* NebularAudioPlayer.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				154A290A1F8A414800C288E9 /* NebularAudio */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		398866291F8BC40E00A1B687 /* NebularAudioPlayer.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = NebularAudioPlayer.app;
+			remoteRef = 398866281F8BC40E00A1B687 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		154A29091F8A414800C288E9 /* Resources */ = {
