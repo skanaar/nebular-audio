@@ -17,7 +17,7 @@ class FadingPlayer {
     }
     
     func update(dt: Float) {
-        let step = Float(dt) / crossFade
+        let step = abs(crossFade) > 0.01 ? Float(dt) / crossFade : 1.0
         if abs(player.volume - targetVolume) < 1.5*step {
             player.volume = targetVolume
         } else {
@@ -44,6 +44,7 @@ public class MusicPlayer {
     
     public func playMusic(file: String, crossFade: Float) {
         guard let url = Bundle.main.url(forResource: file, withExtension: "mp3") else {
+            warning("unknown music '\(file)'")
             return
         }
         for (_, e) in musicPool {
@@ -52,6 +53,13 @@ public class MusicPlayer {
         }
         let player = buildPlayer(url: url, crossFade: crossFade)
         player?.targetVolume = 1
+    }
+    
+    public func pause(crossFade: Float) {
+        for (_, e) in musicPool {
+            e.crossFade = crossFade
+            e.targetVolume = 0
+        }
     }
     
     private func buildPlayer(url: URL, crossFade: Float) -> FadingPlayer? {
