@@ -20,7 +20,7 @@ class FadingPlayer {
         if abs(player.volume - targetVolume) < 1.5*step {
             player.volume = targetVolume
         } else {
-            player.volume -= step * sgn(player.volume - targetVolume)
+            player.volume -= step * sign(player.volume - targetVolume)
         }
         if player.isPlaying && player.volume == 0 {
             player.stop()
@@ -36,7 +36,7 @@ public class NebularAudio {
     private var musicPool = [URL: FadingPlayer]()
 
     public func update(dt: Double) {
-        for e in musicPool {
+        for (_, e) in musicPool {
             e.update(dt: Float(dt))
         }
     }
@@ -45,11 +45,11 @@ public class NebularAudio {
         guard let url = Bundle.main.url(forResource: file, withExtension: "mp3") else {
             return
         }
-        for e in musicPool {
+        for (_, e) in musicPool {
             e.targetVolume = 0
         }
-        let player = startPlaying(url: url!)
-        player.targetVolume = 1
+        let player = buildPlayer(url: url)
+        player?.targetVolume = 1
     }
     
     private func buildPlayer(url: URL) -> FadingPlayer? {
